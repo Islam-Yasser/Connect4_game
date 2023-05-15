@@ -7,13 +7,7 @@ import pygame
 ROWS = 6
 COLS = 7
 BOARD_SIZE = 100
-WIDTH = COLS*BOARD_SIZE
-HEIGHT = (ROWS+1)*BOARD_SIZE
-WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
-GREY = (51,51,51)
-RED = (202,0,42)
-YELLOW = (255,213,0)
-LIGHT_BLUE = (154,184,186)
+
 FPS = 60
 RADIUS = BOARD_SIZE / 2 - 10
 
@@ -201,35 +195,10 @@ def minimax(board, depth, alpha, beta, maximizingPlayer):
                 break
         return column, value
 
-def draw_board (board) :
-    WINDOW.fill(GREY)
-    for i in range (0,7) :
-        for j in range (0,6):
-            pygame.draw.circle(WINDOW,LIGHT_BLUE, ( i * BOARD_SIZE + BOARD_SIZE / 2, j * BOARD_SIZE + BOARD_SIZE + BOARD_SIZE / 2), RADIUS )
 
-
-    pygame.display.set_caption("Connect 4")
-    pygame.display.update()
-
-
-def draw_circle (board , row , col ) :
-
-    if board[row][col] == 1 :
-        pygame.draw.circle(WINDOW, RED, (
-             int(col * BOARD_SIZE + BOARD_SIZE / 2), int(row * BOARD_SIZE + BOARD_SIZE + BOARD_SIZE / 2)), RADIUS)
-
-
-    elif board[row][col] == 2 :
-        pygame.draw.circle(WINDOW, YELLOW, (
-            int(col * BOARD_SIZE + BOARD_SIZE / 2), int(row * BOARD_SIZE + BOARD_SIZE + BOARD_SIZE / 2)), RADIUS)
-
-
-pygame.display.update()
 
 
 board = create_board()
 print("\n")
-draw_board(board)
-pygame.init()
-myfont = pygame.font.SysFont("monospace", 100)
+
 
