@@ -196,10 +196,37 @@ def minimax(board, depth, alpha, beta, maximizingPlayer):
         return column, value
 
 
+def draw_board (board) :
+    WINDOW.fill(GREY)
+    for i in range (0,7) :
+        for j in range (0,6):
+            pygame.draw.circle(WINDOW,LIGHT_BLUE, ( i * BOARD_SIZE + BOARD_SIZE / 2, j * BOARD_SIZE + BOARD_SIZE + BOARD_SIZE / 2), RADIUS )
+
+
+    pygame.display.set_caption("Connect 4")
+    pygame.display.update()
+
+
+def draw_circle (board , row , col ) :
+
+    if board[row][col] == 1 :
+        pygame.draw.circle(WINDOW, RED, (
+             int(col * BOARD_SIZE + BOARD_SIZE / 2), int(row * BOARD_SIZE + BOARD_SIZE + BOARD_SIZE / 2)), RADIUS)
+
+
+    elif board[row][col] == 2 :
+        pygame.draw.circle(WINDOW, YELLOW, (
+            int(col * BOARD_SIZE + BOARD_SIZE / 2), int(row * BOARD_SIZE + BOARD_SIZE + BOARD_SIZE / 2)), RADIUS)
+
+
+pygame.display.update()
 
 
 board = create_board()
 print("\n")
+draw_board(board)
+pygame.init()
+myfont = pygame.font.SysFont("monospace", 100)
 
 if __name__ == '__main__':
 
