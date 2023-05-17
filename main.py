@@ -201,4 +201,74 @@ def minimax(board, depth, alpha, beta, maximizingPlayer):
 board = create_board()
 print("\n")
 
+if __name__ == '__main__':
+
+    NO_Winner = False
+    turn = "ai"
+
+    while NO_Winner == 0:
+
+        clock = pygame.time.Clock()
+        clock.tick(FPS)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+
+    # print_board(board)
+        if moves(board) == True:
+            print("Game ended with tie ")
+            break
+        print("\n")
+        if turn == "ai":
+            pygame.time.wait(400)
+            turn = "computer"
+            print("Agent turn \n")
+            b_col, minimax_score = minimax(board, 5, -math.inf, math.inf, True)
+            if isvalid(board, b_col):
+                row = available_row(board, b_col)
+                play(board, row, b_col, 1)
+
+                if check_winner(board, 1):
+                    print("Agent has won \n")
+                    NO_Winner = True
+                    text = myfont.render("AI wins", 1, RED)
+                    WINDOW.blit(text, (143, 5))
+                    pygame.display.update()
+                    gui = False
+
+            print_board(board)
+            draw_circle(board,row,b_col)
+            pygame.display.update()
+            print("\n")
+
+
+        else:
+            pygame.time.wait(400)
+            turn = "ai"
+            print("computer turn ")
+            column = random.randint(0,6)
+            if isvalid(board,column) :
+                row = available_row(board,column)
+                play(board,row,column,2)
+
+                if check_winner(board,2) :
+                    print("computer wins")
+                    print_board(board)
+                    NO_Winner = True
+                    text = myfont.render("Computer wins", 1, YELLOW)
+                    WINDOW.blit(text, (143, 5))
+                    pygame.display.update()
+
+            print_board(board)
+            draw_circle(board, row, column)
+            pygame.display.update()
+            print("\n")
+
+
+        if NO_Winner == True :
+            pygame.time.wait(10000)
+
+
 
